@@ -1,0 +1,19 @@
+name: kioskpos-dev
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: kioskpos-db-dev
+    restart: always
+    environment:
+      - POSTGRES_USER=kioskpos
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=kioskpos
+      - POSTGRES_PORT=5432
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-54325}:5432"
+
+volumes:
+  database:

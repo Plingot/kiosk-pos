@@ -1,0 +1,35 @@
+name: kioskpos-prod
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: kioskpos-db-prod
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?err}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?err}
+      - POSTGRES_DB=${POSTGRES_DB:?err}
+      - POSTGRES_PORT=5432
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kioskpos:
+    image: alexanderwassbjer/kioskpos:latest
+    container_name: kioskpos
+    restart: always
+    ports:
+      - ${PORT:-3000}:3000
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  database:

@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model ProductVariant {
+  id            String     @id @default(uuid())
+  name          String
+  price         Int
+  stock         Int
+  purchasePrice Int
+  image         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Product       Product?   @relation(fields: [productId], references: [id])
+  productId     String?
+  cartItem      CartItem[]
+}
+
+model Product {
+  id                String           @id @default(uuid())
+  name              String
+  price             Int
+  image             String
+  stock             Int
+  purchasePrice     Int?
+  variants          ProductVariant[]
+  relatedProductIds String[]
+  categoryId        String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  category          Category?        @relation(fields: [categoryId], references: [id])
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  name      String
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Role     @default(USER)
+}
+
+model Transaction {
+  id           String     @id @default(uuid())
+  customerId   String
+  customerName String
+  items        CartItem[]
+  total        Int
+  timestamp    DateTime
+  paid         Boolean?
+  pending      Boolean?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model CartItem {
+  id            String          @id @default(uuid())
+  productId     String
+  name          String
+  price         Int
+  image         String
+  quantity      Int
+  variantId     String?
+  variant       ProductVariant? @relation(fields: [variantId], references: [id])
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  transaction   Transaction?    @relation(fields: [transactionId], references: [id])
+  transactionId String?
+}
+
+model ProductRequest {
+  id            String   @id @default(uuid())
+  productId     String
+  productName   String
+  variantId     String?
+  variantName   String?
+  count         Int
+  lastRequested DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  title     String
+  icon      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  product   Product[]
+}

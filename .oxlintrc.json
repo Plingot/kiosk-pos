@@ -1,0 +1,64 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "react-hooks", "react-perf", "typescript", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "style": "warn",
+    "perf": "warn"
+  },
+  "ignorePatterns": [
+    "build",
+    "node_modules",
+    "public",
+    "**/CHANGELOG.md",
+    "**/README.md",
+    "src/gql",
+    "src/widgets/*.ts",
+    "**/*.js",
+    "**/*.test.tsx",
+    "**/*.test.ts"
+  ],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "react/jsx-no-useless-fragment": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "react-perf/jsx-no-new-function-as-prop": "off",
+    "react-perf/jsx-no-new-array-as-prop": "off",
+    "react-perf/jsx-no-new-object-as-prop": "off",
+    "react-perf/jsx-no-jsx-as-prop": "off",
+    "no-await-in-loop": "off",
+    "no-duplicate-imports": "off", // Waiting for allowSeparateTypeImport as a option on this rule. https://github.com/oxc-project/oxc/issues/11987
+    "no-array-index-key": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-nested-ternary": "off",
+    "react/react-in-jsx-scope": "off", // Since React v17 this is solved automatically.
+    "jsx-boolean-value": "off",
+    "prefer-destructuring": "off",
+    "exhaustive-deps": "off",
+    "no-return-assign": "off",
+    "init-declarations": "off",
+    "no-unneeded-ternary": "off",
+    "curly": "warn",
+    "no-unsafe-optional-chaining": "off",
+    "id-length": "off",
+    "sort-keys": "off",
+    "max-params": "off",
+    "arrow-body-style": "off",
+    "new-cap": "off",
+    "no-ternary": "off",
+    "func-style": "off",
+    "sort-imports": "off",
+    "prefer-template": "off",
+    "self-closing-comp": "off",
+    "no-magic-numbers": "off",
+    "typescript/consistent-type-definitions": "off"
+  }
+}
