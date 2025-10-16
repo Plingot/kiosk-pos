@@ -39,7 +39,9 @@ const TotalsCard = memo(
               )}
             >
               <span>{t('pos.number-of-items')}</span>
-              <span>{currencyFormat(cartItemCount)}</span>
+              <span>
+                {cartItemCount} {t('pos.pc')}
+              </span>
             </div>
             <div className="border-b border-dashed dark:border-white/50" />
             <div
