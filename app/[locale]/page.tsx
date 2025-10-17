@@ -163,7 +163,7 @@ export default function Home() {
               <LanguageSwitcher />
               <Button variant="outline" size="sm" asChild>
                 <Link
-                  href="https://github.com/alexanderwassbjer/kiosk-pos"
+                  href="https://github.com/Plingot/kiosk-pos"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -191,7 +191,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button size="lg" className="text-base" asChild>
                   <Link
-                    href="https://github.com/alexanderwassbjer/kiosk-pos"
+                    href="https://github.com/Plingot/kiosk-pos"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -262,7 +262,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
                 <Link
-                  href="https://github.com/alexanderwassbjer/kiosk-pos"
+                  href="https://github.com/Plingot/kiosk-pos"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
