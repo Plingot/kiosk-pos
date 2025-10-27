@@ -215,7 +215,7 @@
       "balance-reset": "Saldo nollställt",
       "balance-reset-description": "Saldo för {name} har nollställts",
       "hello": "Hej",
-      "thank-you-for-your-payment-on": "Tack för din betalning den",
+      "thank-you-for-your-payment-on": "Tack för din betalning på",
       "error-reset-balance-description": "Kunde inte nollställa saldo",
       "loading-customer-balances": "Laddar kundsaldon",
       "total": "Totalt",
